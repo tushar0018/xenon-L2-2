@@ -1,0 +1,83 @@
+use('sales');
+/*
+db.agents.insertOne(
+  {   
+    "AGENT_CODE":"A007", 
+    "AGENT_NAME":"Ramasundar", 
+    "WORKING_AREA":"Bangalore", 
+    "COMMISSION":"0.15"
+  }
+
+)
+*/
+
+
+db.agents.insertMany([
+  { 
+    "AGENT_CODE":"A008",
+    "AGENT_NAME":"Ishan",
+    "WORKING_AREA":"Ajmer",
+    "COMMISSION":"0.10"
+  },
+  {
+    "AGENT_CODE":"A009",
+    "AGENT_NAME":"Tushar",
+    "WORKING_AREA":"GangaNagar",
+    "COMMISSION":".20",
+  },
+  {
+    "AGENT_CODE":"A010",
+    "AGENT_NAME":"Ritik",
+    "WORKING_AREA":"Murena",
+    "COMMISSION":".05",
+  }
+])
+
+db.agents.find({})
+
+db.orders.insertMany([
+    {
+      "ORD_NUM":"200100",
+      "ORD_AMOUNT":"1000.00",
+      "CUST_CODE":"C00013",
+      "AGENT_CODE":"A008",
+    },
+    {
+      "ORD_NUM":"200101",
+      "ORD_AMOUNT":"2000.00",
+      "CUST_CODE":"C00014",
+      "AGENT_CODE":"A009",
+    },
+    {
+      "ORD_NUM":"200102",
+      "ORD_AMOUNT":"3000.00",
+      "CUST_CODE":"C00015",
+      "AGENT_CODE":"A010",
+    },
+])
+
+db.orders.find({})
+
+db.customer.insertMany({
+  {
+    "CUST_CODE":"C00013",
+    "CUST_NAME":"Ishan",
+    "CUST_CITY":"Jaipur",
+    "GRADE":"A1",
+    "AGENT_CODE":"A010"
+  },
+  {
+    "CUST_CODE":"C00014",
+    "CUST_NAME":"Jatin",
+    "CUST_CITY":"Jaipur",
+    "GRADE":"A1",
+    "AGENT_CODE":"A009"
+  },
+  {
+    "CUST_CODE":"C00015",
+    "CUST_NAME":"Tushar",
+    "CUST_CITY":"Jaipur",
+    "GRADE":"A1",
+    "AGENT_CODE":"A008"+
+  }
+})

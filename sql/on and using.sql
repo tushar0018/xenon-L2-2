@@ -1,0 +1,5 @@
+select * from ORDERS join AGENTS using (AGENT_CODE);
+select * from CUSTOMER join ORDERS using (AGENT_CODE);
+select * from CUSTOMER join ORDERS on CUSTOMER.AGENT_CODE=ORDERS.AGENT_CODE;
+select * from CUSTOMER join AGENTS on CUSTOMER.AGENT_CODE=AGENTS.AGENT_CODE;
+

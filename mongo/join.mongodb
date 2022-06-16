@@ -1,0 +1,13 @@
+use('sales')
+
+
+//db.agents.findOneAndUpdate("AGENT_CODE":"A0050","AGENT_CODE":"A0015")
+
+db.orders.aggregate([{
+    $lookup: {
+            from:"agents",
+            localField: "AGENT_CODE",
+            foreignField: "AGENT_CODE",
+            as: "new"
+        }
+}])

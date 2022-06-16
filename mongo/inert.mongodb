@@ -1,0 +1,14 @@
+use('sales')
+
+db.agents.insertOne([
+  { 
+    AGENT_CODE:"A0050",
+    AGENT_NAME:"Ishan Jain",
+    WORKING_AREA:"Delhi",
+    COMMISSION:"0.10"
+  },
+])
+
+
+
+

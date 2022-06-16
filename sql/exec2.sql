@@ -1,0 +1,21 @@
+use Sales;
+
+CREATE TABLE  CUSTOMER 
+   (	
+    CUST_CODE VARCHAR(6) NOT NULL PRIMARY KEY, 
+	CUST_NAME VARCHAR(40) NOT NULL, 
+	CUST_CITY CHAR(35), 
+	GRADE int, 
+	AGENT_CODE CHAR(6) NOT NULL REFERENCES AGENTS
+   ); 
+
+INSERT INTO CUSTOMER VALUES ('C00013', 'Holmes',      'London'   ,'2','A003');
+INSERT INTO CUSTOMER VALUES ('C00001', 'Micheal',     'New York' ,'2','A008');
+INSERT INTO CUSTOMER VALUES ('C00020', 'Albert',      'New York' ,'3','A008');
+INSERT INTO CUSTOMER VALUES ('C00025', 'Ravindran',   'Bangalore','2','A011');
+INSERT INTO CUSTOMER VALUES ('C00024', 'Cook',        'London'   ,'2','A007');
+INSERT INTO CUSTOMER VALUES ('C00015', 'Stuart',      'London'   ,'3', 'A003');
+INSERT INTO CUSTOMER VALUES ('C00002', 'Bolt',        'New York' ,'3', 'A008');
+INSERT INTO CUSTOMER VALUES ('C00018', 'Fleming',     'Brisban'  ,'2', 'A011');
+INSERT INTO CUSTOMER VALUES ('C00021', 'Jacks',       'Brisban'  ,'1','A007');
+INSERT INTO CUSTOMER VALUES ('C00019', 'Yearannaidu', 'Chennai'  ,'1','A010');    
