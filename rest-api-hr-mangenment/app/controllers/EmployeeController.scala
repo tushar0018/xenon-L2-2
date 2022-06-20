@@ -19,7 +19,7 @@ class EmployeeController @Inject()(
   extends BaseController {
   def findAll():Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     employeeRepository.findAll().map {
-      movies => Ok(Json.toJson(movies))
+      employees => Ok(Json.toJson(employees))
     }
   }
 
@@ -27,9 +27,9 @@ class EmployeeController @Inject()(
     val objectIdTryResult = BSONObjectID.parse(id)
     objectIdTryResult match {
       case Success(objectId) => employeeRepository.findOne(objectId).map {
-        movie => Ok(Json.toJson(movie))
+        employee => Ok(Json.toJson(employee))
       }
-      case Failure(_) => Future.successful(BadRequest("Cannot parse the movie id"))
+      case Failure(_) => Future.successful(BadRequest("Cannot parse the employee id"))
     }
   }
 
@@ -37,9 +37,9 @@ class EmployeeController @Inject()(
 
     request.body.validate[Employee].fold(
       _ => Future.successful(BadRequest("Cannot parse request body")),
-      movie =>
-        employeeRepository.create(movie).map {
-          _ => Created(Json.toJson(movie))
+      employee =>
+        employeeRepository.create(employee).map {
+          _ => Created(Json.toJson(employee))
         }
     )
   }}
@@ -54,7 +54,7 @@ class EmployeeController @Inject()(
           case Success(objectId) => employeeRepository.update(objectId, employee).map {
             result => Ok(Json.toJson(result.ok))
           }
-          case Failure(_) => Future.successful(BadRequest("Cannot parse the movie id"))
+          case Failure(_) => Future.successful(BadRequest("Cannot parse the Employee id"))
         }
       }
     )
@@ -66,7 +66,7 @@ class EmployeeController @Inject()(
       case Success(objectId) => employeeRepository.delete(objectId).map {
         _ => NoContent
       }
-      case Failure(_) => Future.successful(BadRequest("Cannot parse the movie id"))
+      case Failure(_) => Future.successful(BadRequest("Cannot parse the Employee id"))
     }
   }}
 }

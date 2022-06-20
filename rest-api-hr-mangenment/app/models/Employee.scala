@@ -17,7 +17,7 @@ case class Employee(
                 )
 object Employee{
   implicit val fmt : Format[Employee] = Json.format[Employee]
-  implicit object MovieBSONReader extends BSONDocumentReader[Employee] {
+  implicit object EmployeeBSONReader extends BSONDocumentReader[Employee] {
     def read(doc: BSONDocument): Employee = {
       Employee(
         doc.getAs[BSONObjectID]("_id"),
@@ -28,7 +28,7 @@ object Employee{
     }
   }
 
-  implicit object MovieBSONWriter extends BSONDocumentWriter[Employee] {
+  implicit object EmployeeBSONWriter extends BSONDocumentWriter[Employee] {
     def write(Employee: Employee): BSONDocument = {
       BSONDocument(
         "_id" -> Employee._id,
