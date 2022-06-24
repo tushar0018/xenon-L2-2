@@ -26,4 +26,20 @@ Test and run the application:
 sbt test
 sbt run
 ```
+for POST :
+```
 curl --verbose --header "Content-Type: application/json"  --request POST  --data '{ "name":"Deep Rajput", "role":"Design manager" }' http://localhost:9000/Employees
+```
+for GET:
+```
+curl --verbose --request GET http://localhost:9000/Employees
+curl -X GET "http://localhost:9000/Employees/<id>"
+```
+FOR DELETE:
+```
+curl -X DELETE "http://localhost:9000/Employees/<id>"
+```
+FOR UPDATE:
+```
+curl --verbose --header "Content-Type: application/json" --request PUT --data '{ "name":"Tushar Lakhotia", "role":"intern" }' http://localhost:9000/Employees/<id>
+```
