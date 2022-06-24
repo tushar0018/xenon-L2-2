@@ -8,6 +8,7 @@ import reactivemongo.bson._
 import play.api.libs.json.JodaWrites._
 import play.api.libs.json.JodaReads._
 
+//defination of employee
 case class Employee(
                   _id:Option[BSONObjectID],
                   _JoiningDate: Option[DateTime],
@@ -15,8 +16,11 @@ case class Employee(
                   name:String,
                   role:String
                 )
+                
+// JSON/BSON serializers                
 object Employee{
-  implicit val fmt : Format[Employee] = Json.format[Employee]
+  implicit val fmt : Format[Employee] = Json.format[Employee]  //JSON serialization using automated mapping
+  
   implicit object EmployeeBSONReader extends BSONDocumentReader[Employee] {
     def read(doc: BSONDocument): Employee = {
       Employee(
