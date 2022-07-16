@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/tushar/Desktop/xenon/rest-api-hr-mangenment/conf/routes
-// @DATE:Mon Jun 20 07:01:03 IST 2022
+// @DATE:Tue Jun 28 21:08:54 IST 2022
 
 package router
 
@@ -35,10 +35,11 @@ class Routes(
   }
 
   def documentation = List(
+    ("""GET""", this.prefix, """controllers.EmployeeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees""", """controllers.EmployeeController.findAll()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.findOne(id:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees""", """controllers.EmployeeController.create()"""),
-    ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.update(id:String)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.update(id:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """Employees/""" + "$" + """id<[^/]+>""", """controllers.EmployeeController.delete(id:String)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -48,10 +49,28 @@ class Routes(
 
 
   // @LINE:2
-  private[this] lazy val controllers_EmployeeController_findAll0_route = Route("GET",
+  private[this] lazy val controllers_EmployeeController_index0_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix)))
+  )
+  private[this] lazy val controllers_EmployeeController_index0_invoker = createInvoker(
+    EmployeeController_0.index,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.EmployeeController",
+      "index",
+      Nil,
+      "GET",
+      this.prefix + """""",
+      """ Routes""",
+      Seq()
+    )
+  )
+
+  // @LINE:3
+  private[this] lazy val controllers_EmployeeController_findAll1_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("Employees")))
   )
-  private[this] lazy val controllers_EmployeeController_findAll0_invoker = createInvoker(
+  private[this] lazy val controllers_EmployeeController_findAll1_invoker = createInvoker(
     EmployeeController_0.findAll(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -60,16 +79,16 @@ class Routes(
       Nil,
       "GET",
       this.prefix + """Employees""",
-      """ Routes""",
+      """""",
       Seq()
     )
   )
 
-  // @LINE:3
-  private[this] lazy val controllers_EmployeeController_findOne1_route = Route("GET",
+  // @LINE:4
+  private[this] lazy val controllers_EmployeeController_findOne2_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("Employees/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_EmployeeController_findOne1_invoker = createInvoker(
+  private[this] lazy val controllers_EmployeeController_findOne2_invoker = createInvoker(
     EmployeeController_0.findOne(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -83,11 +102,11 @@ class Routes(
     )
   )
 
-  // @LINE:4
-  private[this] lazy val controllers_EmployeeController_create2_route = Route("POST",
+  // @LINE:5
+  private[this] lazy val controllers_EmployeeController_create3_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("Employees")))
   )
-  private[this] lazy val controllers_EmployeeController_create2_invoker = createInvoker(
+  private[this] lazy val controllers_EmployeeController_create3_invoker = createInvoker(
     EmployeeController_0.create(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -101,29 +120,29 @@ class Routes(
     )
   )
 
-  // @LINE:5
-  private[this] lazy val controllers_EmployeeController_update3_route = Route("PUT",
+  // @LINE:6
+  private[this] lazy val controllers_EmployeeController_update4_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("Employees/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_EmployeeController_update3_invoker = createInvoker(
+  private[this] lazy val controllers_EmployeeController_update4_invoker = createInvoker(
     EmployeeController_0.update(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.EmployeeController",
       "update",
       Seq(classOf[String]),
-      "PUT",
+      "POST",
       this.prefix + """Employees/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
   )
 
-  // @LINE:6
-  private[this] lazy val controllers_EmployeeController_delete4_route = Route("DELETE",
+  // @LINE:7
+  private[this] lazy val controllers_EmployeeController_delete5_route = Route("DELETE",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("Employees/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_EmployeeController_delete4_invoker = createInvoker(
+  private[this] lazy val controllers_EmployeeController_delete5_invoker = createInvoker(
     EmployeeController_0.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -141,33 +160,39 @@ class Routes(
   def routes: PartialFunction[RequestHeader, Handler] = {
   
     // @LINE:2
-    case controllers_EmployeeController_findAll0_route(params@_) =>
+    case controllers_EmployeeController_index0_route(params@_) =>
       call { 
-        controllers_EmployeeController_findAll0_invoker.call(EmployeeController_0.findAll())
+        controllers_EmployeeController_index0_invoker.call(EmployeeController_0.index)
       }
   
     // @LINE:3
-    case controllers_EmployeeController_findOne1_route(params@_) =>
-      call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_EmployeeController_findOne1_invoker.call(EmployeeController_0.findOne(id))
+    case controllers_EmployeeController_findAll1_route(params@_) =>
+      call { 
+        controllers_EmployeeController_findAll1_invoker.call(EmployeeController_0.findAll())
       }
   
     // @LINE:4
-    case controllers_EmployeeController_create2_route(params@_) =>
-      call { 
-        controllers_EmployeeController_create2_invoker.call(EmployeeController_0.create())
+    case controllers_EmployeeController_findOne2_route(params@_) =>
+      call(params.fromPath[String]("id", None)) { (id) =>
+        controllers_EmployeeController_findOne2_invoker.call(EmployeeController_0.findOne(id))
       }
   
     // @LINE:5
-    case controllers_EmployeeController_update3_route(params@_) =>
-      call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_EmployeeController_update3_invoker.call(EmployeeController_0.update(id))
+    case controllers_EmployeeController_create3_route(params@_) =>
+      call { 
+        controllers_EmployeeController_create3_invoker.call(EmployeeController_0.create())
       }
   
     // @LINE:6
-    case controllers_EmployeeController_delete4_route(params@_) =>
+    case controllers_EmployeeController_update4_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_EmployeeController_delete4_invoker.call(EmployeeController_0.delete(id))
+        controllers_EmployeeController_update4_invoker.call(EmployeeController_0.update(id))
+      }
+  
+    // @LINE:7
+    case controllers_EmployeeController_delete5_route(params@_) =>
+      call(params.fromPath[String]("id", None)) { (id) =>
+        controllers_EmployeeController_delete5_invoker.call(EmployeeController_0.delete(id))
       }
   }
 }

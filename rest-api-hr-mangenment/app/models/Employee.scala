@@ -17,7 +17,7 @@ case class Employee(
                   role:String
                 )
                 
-// JSON/BSON serializers                
+// JSON-BSON serializers                
 object Employee{
   implicit val fmt : Format[Employee] = Json.format[Employee]  //JSON serialization using automated mapping
   

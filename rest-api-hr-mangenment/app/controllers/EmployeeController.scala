@@ -21,6 +21,9 @@ class EmployeeController @Inject()(
                                     val controllerComponents: ControllerComponents)
   extends BaseController {
   
+  def index = Action {
+  Ok(views.html.index())
+}  
   //call the findall function in the repository
   def findAll():Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     employeeRepository.findAll().map {
@@ -35,7 +38,8 @@ class EmployeeController @Inject()(
       case Success(objectId) => employeeRepository.findOne(objectId).map {
         employee => Ok(Json.toJson(employee))
       }
-      case Failure(_) => Future.successful(BadRequest("Cannot parse the employee id"))
+      
+      case Failure(_) => Future.successful(BadRequest("Cannot parse the employee id")) 
     }
   }
   
@@ -46,10 +50,12 @@ class EmployeeController @Inject()(
       _ => Future.successful(BadRequest("Cannot parse request body")),
       employee =>
         employeeRepository.create(employee).map {
-          _ => Created(Json.toJson(employee))
+          employee => Ok(Json.toJson(employee))
+ 
         }
     )
-  }}
+  }
+  }
 
   //checks the body for correct format then match the id in the database and if match then call update in the repository
   def update(
@@ -60,7 +66,7 @@ class EmployeeController @Inject()(
         val objectIdTryResult = BSONObjectID.parse(id)
         objectIdTryResult match {
           case Success(objectId) => employeeRepository.update(objectId, employee).map {
-            result => Ok(Json.toJson(result.ok))
+            result => Ok(Json.toJson(result))
           }
           case Failure(_) => Future.successful(BadRequest("Cannot parse the Employee id"))
         }

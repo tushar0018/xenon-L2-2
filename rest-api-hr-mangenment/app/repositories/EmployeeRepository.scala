@@ -38,22 +38,31 @@ class EmployeeRepository @Inject()(
   }
 
   //for inserting data in the database
-  def create(employee: Employee): Future[WriteResult] = {
+  def create(employee: Employee): Future[Option[Employee]] = 
+  {
     collection.flatMap(_.insert(ordered = false)
       .one(employee.copy(_JoiningDate = Some(new DateTime()), _LeavingDate = Some(new DateTime()))))
+      
+      var c:Option[BSONObjectID] =employee._id
+      
+      collection.flatMap(_.find(BSONDocument("_id" -> c), Option.empty[Employee]).one[Employee])
+      
+      
+    
   }
 
   //for updating already stored data on the basis of id
-  def update(id: BSONObjectID, employee: Employee):Future[WriteResult] = {
+  def update(id: BSONObjectID, employee: Employee):Future[Option[Employee]] = {
 
     collection.flatMap(
       _.update(ordered = false).one(BSONDocument("_id" -> id),
         employee.copy(
           _LeavingDate = Some(new DateTime())))
     )
+    collection.flatMap(_.find(BSONDocument("_id" -> id), Option.empty[Employee]).one[Employee])
   }
 
-  //for deletinf a record
+  //for deletion in a record
   def delete(id: BSONObjectID):Future[WriteResult] = {
     collection.flatMap(
       _.delete().one(BSONDocument("_id" -> id), Some(1))

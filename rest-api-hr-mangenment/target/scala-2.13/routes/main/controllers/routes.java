@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/tushar/Desktop/xenon/rest-api-hr-mangenment/conf/routes
-// @DATE:Mon Jun 20 07:01:03 IST 2022
+// @DATE:Tue Jun 28 21:08:54 IST 2022
 
 package controllers;
 

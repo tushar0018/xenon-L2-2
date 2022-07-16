@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/tushar/Desktop/xenon/rest-api-hr-mangenment/conf/routes
-// @DATE:Mon Jun 20 07:01:03 IST 2022
+// @DATE:Tue Jun 28 21:08:54 IST 2022
 
 import play.api.mvc.Call
 
@@ -17,34 +17,40 @@ package controllers {
     }
 
   
-    // @LINE:4
+    // @LINE:5
     def create(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "Employees")
     }
   
-    // @LINE:3
+    // @LINE:4
     def findOne(id:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "Employees/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:2
+    // @LINE:3
     def findAll(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "Employees")
     }
   
-    // @LINE:6
+    // @LINE:7
     def delete(id:String): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "Employees/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:5
+    // @LINE:6
     def update(id:String): Call = {
       
-      Call("PUT", _prefix + { _defaultPrefix } + "Employees/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("POST", _prefix + { _defaultPrefix } + "Employees/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:2
+    def index(): Call = {
+      
+      Call("GET", _prefix)
     }
   
   }
